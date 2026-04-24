@@ -13,13 +13,14 @@ public class StudentController {
         this.studentRepository = studentRepository;
     }
 
-    // Welcome + Input loop page
     @GetMapping("/")
     public String home() {
         return """
         <h1>Welcome to Student Management by Ravi Shankar Shukla</h1>
+
         <button onclick="addStudents()">Add Students</button>
         <br><br>
+
         <a href="/students">View Students</a>
 
         <script>
@@ -51,19 +52,51 @@ public class StudentController {
         """;
     }
 
-    // Get all students
     @GetMapping("/students")
-    public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+    public String getAllStudents() {
+        List<Student> students = studentRepository.findAll();
+
+        StringBuilder html = new StringBuilder();
+        html.append("<h1>Student List</h1>");
+        html.append("<a href='/'>Back to Home</a><br><br>");
+
+        if (students.isEmpty()) {
+            html.append("<p>No student data available.</p>");
+        } else {
+            for (Student s : students) {
+                html.append("<p>")
+                    .append(s.getId()).append(" - ")
+                    .append(s.getName()).append(" - ")
+                    .append(s.getEmail()).append(" - ")
+                    .append(s.getCourse())
+                    .append(" ")
+                    .append("<button onclick=\"deleteStudent(")
+                    .append(s.getId())
+                    .append(")\">Delete</button>")
+                    .append("</p>");
+            }
+        }
+
+        html.append("""
+            <script>
+                async function deleteStudent(id) {
+                    await fetch('/students/' + id, {
+                        method: 'DELETE'
+                    });
+                    alert('Student deleted successfully!');
+                    location.reload();
+                }
+            </script>
+        """);
+
+        return html.toString();
     }
 
-    // Add student
     @PostMapping("/students")
     public Student createStudent(@RequestBody Student student) {
         return studentRepository.save(student);
     }
 
-    // Delete student
     @DeleteMapping("/students/{id}")
     public void deleteStudent(@PathVariable Long id) {
         studentRepository.deleteById(id);
