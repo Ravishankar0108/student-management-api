@@ -93,6 +93,6 @@ docker run -p 8080:8080 student-api
 
 ## 👨‍💻 Author
 
-Made by **[Ravishankar](https://github.com/Ravishankar0108)**
+Made by **[Ravi Shankar](https://github.com/Ravishankar0108)**
 
 ⭐ Star this repo if you found it helpful!
