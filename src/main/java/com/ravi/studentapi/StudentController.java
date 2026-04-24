@@ -19,10 +19,11 @@ public class StudentController {
         this.studentRepository = studentRepository;
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "Welcome to Student Management by Ravi Shankar Shukla";
-    }
+   @GetMapping("/")
+public String home() {
+    return "<h1>Welcome to Student Management by Ravi Shankar Shukla</h1>" +
+           "<a href='/students'>View Students</a>";
+}
 
     @GetMapping("/students")
     public List<Student> getAllStudents() {
