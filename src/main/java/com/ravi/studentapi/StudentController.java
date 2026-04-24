@@ -13,6 +13,7 @@ public class StudentController {
         this.studentRepository = studentRepository;
     }
 
+    // HOME PAGE (Add Students)
     @GetMapping("/")
     public String home() {
         return """
@@ -52,6 +53,7 @@ public class StudentController {
         """;
     }
 
+    // VIEW STUDENTS (WITH SERIAL NUMBER + DELETE BUTTON)
     @GetMapping("/students")
     public String getAllStudents() {
         List<Student> students = studentRepository.findAll();
@@ -63,9 +65,11 @@ public class StudentController {
         if (students.isEmpty()) {
             html.append("<p>No student data available.</p>");
         } else {
+            int serialNo = 1;
+
             for (Student s : students) {
                 html.append("<p>")
-                    .append(s.getId()).append(" - ")
+                    .append(serialNo).append(". ")
                     .append(s.getName()).append(" - ")
                     .append(s.getEmail()).append(" - ")
                     .append(s.getCourse())
@@ -74,6 +78,8 @@ public class StudentController {
                     .append(s.getId())
                     .append(")\">Delete</button>")
                     .append("</p>");
+
+                serialNo++;
             }
         }
 
@@ -92,11 +98,13 @@ public class StudentController {
         return html.toString();
     }
 
+    // ADD STUDENT (API)
     @PostMapping("/students")
     public Student createStudent(@RequestBody Student student) {
         return studentRepository.save(student);
     }
 
+    // DELETE STUDENT (API)
     @DeleteMapping("/students/{id}")
     public void deleteStudent(@PathVariable Long id) {
         studentRepository.deleteById(id);
