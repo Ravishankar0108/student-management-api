@@ -14,7 +14,8 @@ A lightweight **RESTful API** to manage student records — built with Spring Bo
 🔗 **[https://student-management-api-7yew.onrender.com](https://student-management-api-7yew.onrender.com)**
 
 > ⚠️ Free tier — may take **30–60 seconds** to wake up if idle.
-
+> 
+📄 **[View Full Technical Documentation (PDF)](./Student_Management_API_Project.pdf)**
 ---
 
 ## ✨ Features
