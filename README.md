@@ -1,3 +1,13 @@
+## 🚀 Live Demo
+
+[![Deployed on Render](https://img.shields.io/badge/Deployed%20on-Render-46E3B7?style=for-the-badge&logo=render)](https://student-management-api-7yew.onrender.com)
+
+> **Base URL:** https://student-management-api-7yew.onrender.com
+
+> ⚠️ Note: This service is hosted on Render's free tier. It may take **~30–60 seconds** to spin up if idle.
+
+
+
 # Student Management API
 
 A simple REST API built using Java, Spring Boot, Spring Data JPA, H2 Database, and Docker.
@@ -36,3 +46,4 @@ Sample POST Request
   "email": "ravi@gmail.com",
   "course": "Java"
 }
+
