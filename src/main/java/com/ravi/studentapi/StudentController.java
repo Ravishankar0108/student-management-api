@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/students")
 public class StudentController {
 
     private final StudentRepository studentRepository;
@@ -20,17 +19,22 @@ public class StudentController {
         this.studentRepository = studentRepository;
     }
 
-    @GetMapping
+    @GetMapping("/")
+    public String home() {
+        return "Welcome to Student Management by Ravi Shankar Shukla";
+    }
+
+    @GetMapping("/students")
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/students")
     public Student createStudent(@RequestBody Student student) {
         return studentRepository.save(student);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/students/{id}")
     public void deleteStudent(@PathVariable Long id) {
         studentRepository.deleteById(id);
     }
